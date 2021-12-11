@@ -15,16 +15,16 @@ RUN chmod g+rwX /opt/bitnami
 RUN localedef -c -f UTF-8 -i en_US en_US.UTF-8
 RUN update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX && \
     DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
-RUN echo 'en_GB.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
 RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
+RUN echo 'pt_BR.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
 
 COPY rootfs /
 RUN /opt/bitnami/scripts/postgresql/postunpack.sh
 RUN /opt/bitnami/scripts/locales/add-extra-locales.sh
 ENV BITNAMI_APP_NAME="postgresql" \
     BITNAMI_IMAGE_VERSION="14.1.0-debian-10-r27" \
-    LANG="en_US.UTF-8" \
-    LANGUAGE="en_US:en" \
+    LANG="pt_BR.UTF-8" \
+    LANGUAGE="pt_BR:pt" \
     NSS_WRAPPER_LIB="/opt/bitnami/common/lib/libnss_wrapper.so" \
     PATH="/opt/bitnami/postgresql/bin:/opt/bitnami/common/bin:$PATH"
 
